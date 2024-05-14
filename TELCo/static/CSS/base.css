@@ -1,0 +1,45 @@
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: black;
+}
+
+.black_navbar {
+    background-color: black;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 60px !important;
+}
+
+.black_navbar .logo {
+    height: 60px;         
+}
+
+.black_navbar a {
+    color: white;
+    text-decoration: none;
+    font-size: larger;
+    font-weight: bold;
+}
+
+.black_navbar .search-bar input[type="text"] {
+    background-color: transparent;
+    color: white;
+    padding: 5px 10px;
+    border-radius: 5px;
+    outline: none;
+    position: relative;
+    top: -2px;
+}
+
+.black_navbar .search-bar button {
+    background-color: #46C5FB;
+    color: black;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    position: relative;
+    top: -2px;
+}

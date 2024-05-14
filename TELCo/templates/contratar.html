@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Seleccionar y Contratar Servicio</title>
+</head>
+<body>
+    <h1>Selecciona un servicio:</h1>
+    <div id="servicios"></div>
+
+    <script>
+        async function cargarServicios() {
+            const response = await fetch('/servicios');
+            const servicios = await response.json();
+
+            const serviciosDiv = document.getElementById('servicios');
+            servicios.forEach(servicio => {
+                const servicioDiv = document.createElement('div');
+                servicioDiv.innerHTML = `
+                    <p><strong>${servicio.nombre}</strong></p>
+                    <p>${servicio.descripcion}</p>
+                    <p>Precio: ${servicio.precio} USD</p>
+                    <button onclick="elegirServicio('${servicio.nombre}')">Elegir</button>
+                    <hr>
+                `;
+                serviciosDiv.appendChild(servicioDiv);
+            });
+        }
+
+            function elegirServicio(nombreServicio) {
+                const confirmacion = confirm(`¿Deseas elegir el servicio: ${nombreServicio}?`);
+                if (confirmacion) {
+                    // Redirigir a la página de contrato con el nombre del servicio como parámetro en la URL
+                    window.location.href = `/cont.html?servicio=${encodeURIComponent(nombreServicio)}`;
+                }
+            }
+
+        cargarServicios();
+    </script>
+</body>
+</html>
+
