@@ -5,6 +5,8 @@ from fastapi.staticfiles import StaticFiles
 from api.routers import auth, consult, user_register
 from sso.facebook import FacebookSSO
 from sso.google import GoogleSSO
+import uvicorn
+import os
 
 app = FastAPI()
 templates = Jinja2Templates(directory="templates")
@@ -70,6 +72,6 @@ def base(request: Request):
 def home(request: Request):
     return templates.TemplateResponse("home.html", {"request": request})
 
-if __name__ == "__app__":
+if __name__ == "__main__":
     import uvicorn
-    uvicorn.run(app, host="0.0.0.0", port=8080)
+    uvicorn.run(app, host="0.0.0.0", port=int(os.environ.get("PORT", 8000)))
