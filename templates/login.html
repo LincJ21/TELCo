@@ -4,21 +4,18 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Iniciar sesión</title>
+    <script src="/static/js/redirect.js"></script>
 </head>
 <body>
     <h2>Iniciar sesión</h2>
-    <form action="/login" method="post">
-        <label for="username">Usuario:</label>
-        <input type="text" id="username" name="username" required><br><br>
-        <label for="password">Contraseña:</label>
-        <input type="password" id="password" name="password" required><br><br>
+    <form id="ssoForm">
         <label for="sso_provider">Seleccione un proveedor de SSO:</label>
-        <select id="sso_provider" name="sso_provider">
-            <option value="sso_provider_1">SSO Provider 1</option>
-            <option value="sso_provider_2">SSO Provider 2</option>
-            <!-- Agrega más opciones según tus proveedores de SSO -->
+        <select id="sso_provider" name="sso_provider" required>
+            <option value="">Seleccione</option>
+            <option value="gmail">Gmail</option>
+            <option value="facebook">Facebook</option>
         </select><br><br>
-        <input type="submit" value="Iniciar sesión">
+        <input type="button" value="Iniciar sesión" onclick="redirectToSSO()">
     </form>
 </body>
 </html>
