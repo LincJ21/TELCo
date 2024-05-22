@@ -21,9 +21,10 @@ try:
     # Crear un cursor
     cursor = connection.cursor()
 
+    # Modificar la definición de la tabla factura
     query = """
-    TRUNCATE compras;
-
+    ALTER TABLE factura
+    ALTER COLUMN precio TYPE NUMERIC(10, 2);
     """
     cursor.execute(query)
 
@@ -33,7 +34,8 @@ try:
     # Cerrar el cursor y la conexión
     cursor.close()
     connection.close()
-    print("limpieza completada")
+    print("Modificación completada en la tabla 'factura'")
 
 except Exception as e:
     print(f"Error al realizar la consulta: {e}")
+

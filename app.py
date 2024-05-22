@@ -2,7 +2,7 @@ import os
 from fastapi import FastAPI
 from fastapi.staticfiles import StaticFiles
 from fastapi.templating import Jinja2Templates
-from api.routers import auth, google_sso, facebook_sso
+from api.routers import auth, google_sso, factura
 from sso.google_sso import GoogleSSO
 from fastapi.security.oauth2 import OAuth2AuthorizationCodeBearer  # Importa la clase OAuth2AuthorizationCodeBearer
 
@@ -30,7 +30,7 @@ app.mount("/static", StaticFiles(directory="static"), name="static")
 # Incluir routers
 app.include_router(auth.router)
 app.include_router(google_sso.router)
-app.include_router(facebook_sso.router)
+app.include_router(factura.router)
 
 if __name__ == "__main__":
     import uvicorn
