@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <title>Servicios</title>
+    <link rel="icon" type="image/telco-icon" href="static/telco-icon.png">
     <link rel="stylesheet" href="/static/CSS/styles.css">
     
     <style>
@@ -15,6 +16,33 @@
             background-repeat: no-repeat;
             margin: 0;
         }
+
+        .bd-placeholder-img {
+            font-size: 1.125rem;
+            text-anchor: middle;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+        }
+
+        @media (min-width: 768px) {
+            .bd-placeholder-img-lg {
+            font-size: 3.5rem;
+            }
+        }
+
+        .card-deck .card {
+            background-color: black !important;
+            color: white;
+        }
+
+        #text-card {
+            font-size: 250%;
+            writing-mode: vertical-rl; 
+            margin: 0px;
+        }
+
     </style>
     
 </head>
@@ -27,7 +55,6 @@
         <a href="about">Sobre nosotros</a>
         <div class="search-bar">
             <input type="text" placeholder="Buscar en Telco">
-            <button>Busca</button>
             <a class="button btn" role="button">Buscar</a>
             <a class="button btn" href="login" role="button">Iniciar sesión</a>
         </div>
@@ -35,14 +62,12 @@
 
 
       <div class="container-fluid" style="display: grid; place-items: center;">
-        <div class="card-deck m-5" style="width: 70%;">
+        <div class="card-deck m-3" style="width: 50%;">
                 <div class="card expand-icon">
                     <a href="/familiar">
                     <img class="card-img" src="static/servicio1.png" alt="Card image cap">
                     <div class="card-img-overlay">
-                        <div class="card-img-overlay">
-                            <h5 class="text-dark" style="font-size: 425%; writing-mode: vertical-rl; margin: 0px;">Familiar</h5>
-                        </div>
+                        <h5 class="text-dark text-card" id="text-card">Familiar</h5>
                     </div>
                     </a>
                 </div>
@@ -50,7 +75,7 @@
                     <a href="/entretenimiento">
                     <img class="card-img-top" src="static/servicio2.png" alt="Card image cap">
                     <div class="card-img-overlay">
-                        <h5 class="text-white" style="font-size: 425%; writing-mode: vertical-rl; margin: 0px;">Entretenimiento</h5>
+                        <h5 class="text-white text-card" id="text-card">Entretenimiento</h5>
                     </div>
                     </a>
                 </div>
@@ -58,15 +83,70 @@
                     <a href="/internet">
                     <img class="card-img-top" src="static/servicio3.png" alt="Card image cap">
                     <div class="card-img-overlay">
-                        <h5 class="text-dark" style="font-size: 425%; writing-mode: vertical-rl; margin: 0px;">Internet</h5>
+                        <h5 class="text-dark text-card" id="text-card">Internet</h5>
                     </div>
                 </a>
                 </div>
         </div>
     </div>
-      
-    <div>
+
+    <div class="container-cards">
         
+        <div class="pricing-header px-3 py-3 pt-md-5 pb-md-4 mx-auto text-center">
+        <h1 class="display-4 text-white">Servicios</h1>
+        <p class="lead text-white">Estos son los diversos servicios que que puedes contratar con nosotro y Sonic Telcommunication</p>
+        </div>
+
+        <div class="container">
+        <div class="card-deck mb-3 text-center">
+            <div class="card mb-4 shadow-sm">
+            <div class="card-header">
+                <h4 class="my-0 font-weight-normal">basico</h4>
+            </div>
+            <div class="card-body">
+                <h1 class="card-title pricing-card-title">$15<small class="text-muted"> mil / mes</small></h1>
+                <ul class="list-unstyled mt-3 mb-4">
+                <li>50 gigas</li>
+                <li>Telefonia Fija</li>
+                <li>Sonic Telcommunication</li>
+                <li>Adquiere nuestro plan de telefonía e internet</li>
+                </ul>
+                <a type="button" class="btn btn-lg btn-block btn-outline-primary">Contrata</a>
+            </div>
+            </div>
+            <div class="card mb-4 shadow-sm">
+            <div class="card-header">
+                <h4 class="my-0 font-weight-normal">Sonic Speed</h4>
+            </div>
+            <div class="card-body">
+                <h1 class="card-title pricing-card-title">$30<small class="text-muted"> mil / mes</small></h1>
+                <ul class="list-unstyled mt-3 mb-4">
+                    <li>150 gigas</li>
+                    <li>Telefonia Fija</li>
+                    <li>1 mes de <a style="color: #ff6b01;">Crunchyroll</a> y <a style="color: #e50914;">Netflix</a></li>
+                    <li>Adquiere nuestro plan de telefonía y plataforma de streaming</li>
+                </ul>
+                <a type="button" class="btn btn-lg btn-block btn-outline-primary">Contrata</a>
+            </div>
+            </div>
+            <div class="card mb-4 shadow-sm">
+            <div class="card-header">
+                <h4 class="my-0 font-weight-normal">Sonic Telcommunication</h4>
+            </div>
+            <div class="card-body">
+                <h1 class="card-title pricing-card-title">$60<small class="text-muted"> mil / mes</small></h1>
+                <ul class="list-unstyled mt-3 mb-4">
+                    <li>300 gigas</li>
+                    <li>Telefonia Fija</li>
+                    <li>Sonic Telcommunication</li>
+                    <li>3 mes de <a style="color: #9c3abc;">HBO Max</a> y <a style="color: #e50914;">Netflix</a></li>
+                    <li>Adquiere nuestro plan familiar</li>
+                </ul>
+                <button type="button" class="btn btn-lg btn-block btn-outline-primary">Contrata</button>
+            </div>
+            </div>
+        </div>
+    </div>
         
     </div>
     
