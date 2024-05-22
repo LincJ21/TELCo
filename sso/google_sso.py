@@ -1,11 +1,6 @@
-"""Google SSO Login Helper."""
-
 from typing import ClassVar, Optional
-
 import httpx
-
 from fastapi_sso.sso.base import DiscoveryDocument, OpenID, SSOBase, SSOLoginError
-
 
 class GoogleSSO(SSOBase):
     """Class providing login via Google OAuth."""

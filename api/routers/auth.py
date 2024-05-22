@@ -9,8 +9,6 @@ templates = Jinja2Templates(directory="templates")
 def login(username: str = Form(None), password: str = Form(None), sso_provider: str = Form(...)):
     if sso_provider == "gmail":
         return RedirectResponse(url="/auth/google")
-    elif sso_provider == "facebook":
-        return RedirectResponse(url="/auth/facebook")
     else:
         raise HTTPException(status_code=400, detail="Proveedor de SSO no válido")
 
@@ -18,7 +16,6 @@ def login(username: str = Form(None), password: str = Form(None), sso_provider: 
 def login_page(request: Request):
     return templates.TemplateResponse("login.html", {"request": request})
 
-# Otras rutas para las páginas de tu aplicación
 @router.get("/", response_class=HTMLResponse)
 def index(request: Request):
     return templates.TemplateResponse("home.html", {"request": request})
