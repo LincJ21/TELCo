@@ -114,7 +114,6 @@ html {
   }
 }
 
-
 .container {
   max-width: 960px;
 }
@@ -125,4 +124,17 @@ html {
 
 .card-deck .card {
   min-width: 220px;
+}
+
+.cover {
+  padding: 0 1.5rem;
+}
+.cover .btn-lg {
+  padding: .75rem 1.25rem;
+  font-weight: 700;
+}
+
+.card-deck .card {
+  background-color: black !important;
+  color: white;
 }
