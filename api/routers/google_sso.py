@@ -1,14 +1,16 @@
 from fastapi import APIRouter, Request, HTTPException
-from fastapi.responses import HTMLResponse, RedirectResponse
-from sso.google_sso import GoogleSSO  # Asegúrate de que la clase GoogleSSO esté en google_sso.py
+from fastapi.responses import HTMLResponse
+from sso.google_sso import GoogleSSO
 
 router = APIRouter()
 
+# Datos proporcionados
+GOOGLE_CLIENT_ID = "GOOGLE_CLIENT_ID"
+GOOGLE_CLIENT_SECRET = "GOOGLE_CLIENT_SECRET"
+REDIRECT_URI = "http://127.0.0.1:8000/auth/google/callback"
 
-GOOGLE_CLIENT_ID = 'GOOGLE_CLIENT_ID'
-GOOGLE_CLIENT_SECRET = 'GOOGLE_CLIENT_SECRET'
-
-google_sso = GoogleSSO(GOOGLE_CLIENT_ID, GOOGLE_CLIENT_SECRET, "http://localhost:8000/auth/google/callback")
+# Crear instancia de GoogleSSO con los datos proporcionados
+google_sso = GoogleSSO(GOOGLE_CLIENT_ID, GOOGLE_CLIENT_SECRET, REDIRECT_URI)
 
 @router.get("/auth/google")
 async def google_login():
