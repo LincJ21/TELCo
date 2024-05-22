@@ -37,9 +37,44 @@ async def google_callback(request: Request, code: str, oauth2_scheme: OAuth2Auth
     # Usar el access_token para obtener información del usuario u otras acciones
     return {"access_token": access_token}
 
+@router.get('/welcome')
+def welcome(request: Request):
+    return templates.TemplateResponse("welcome.html", {"request": request})
 # Resto de las rutas y funciones
 
+@router.route('/comprarP', methods=['GET', 'POST'])
+async def comprar(request: Request):
+    if request.method == 'POST':
+        # Procesar la información del formulario si es una solicitud POST
+        form_data = await request.form()
+        cc = form_data['cc']
+        nombre = form_data['nombre']
+        apellido = form_data['apellido']
+        email = form_data['email']
+        departamento = form_data['departamento']
+        ciudad_pueblo = form_data['ciudad_pueblo']
+        barrio = form_data['barrio']
+        celular = form_data['celular']
+        numero_tarjeta = form_data['numero_tarjeta']
+        fecha_expiracion = form_data['fecha_expiracion']
+        codigo_seguridad = form_data['codigo_seguridad']
+        contraseña = form_data['contraseña']
+        plan_referencia = form_data['plan_referencia']
+        #guardar_compra(cc, nombre, apellido, email, departamento, ciudad_pueblo, barrio, celular, numero_tarjeta, fecha_expiracion, codigo_seguridad, contraseña)
+        #clasificar(cc, plan_referencia)
+        return templates.TemplateResponse("comprar.html", {"request": request, "error": None, "success": "Compra registrada exitosamente"})
 
+    elif request.method == 'GET':
+        # Manejar la lógica si es una solicitud GET
+        plan_referencia = request.query_params.get('plan_referencia')
+        return templates.TemplateResponse("comprar.html", {"request": request, "error": None, "success": None, "plan_referencia": plan_referencia})
+
+    # Manejar otras situaciones
+    return templates.TemplateResponse("comprar.html", {"request": request, "error": "Error desconocido", "success": None, "plan_referencia": None})
+
+@router.get("/contratar")
+def contratar(request: Request):
+    return templates.TemplateResponse("contratar.html", {"request": request})
 @router.get("/login", response_class=HTMLResponse)
 def login_page(request: Request):
     return templates.TemplateResponse("login.html", {"request": request})

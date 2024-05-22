@@ -9,3 +9,4 @@ psycopg2==2.9.9
 fastapi_sso==0.7.0
 python-multipart==0.0.9
 requests
+fastapi-login

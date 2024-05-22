@@ -3,41 +3,230 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Seleccionar y Contratar Servicio</title>
-</head>
-<body>
-    <h1>Selecciona un servicio:</h1>
-    <div id="servicios"></div>
-
-    <script>
-        async function cargarServicios() {
-            const response = await fetch('/servicios');
-            const servicios = await response.json();
-
-            const serviciosDiv = document.getElementById('servicios');
-            servicios.forEach(servicio => {
-                const servicioDiv = document.createElement('div');
-                servicioDiv.innerHTML = `
-                    <p><strong>${servicio.nombre}</strong></p>
-                    <p>${servicio.descripcion}</p>
-                    <p>Precio: ${servicio.precio} USD</p>
-                    <button onclick="elegirServicio('${servicio.nombre}')">Elegir</button>
-                    <hr>
-                `;
-                serviciosDiv.appendChild(servicioDiv);
-            });
+    <title>Contratar Servicio</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <style>
+        body {
+            background-image: url('/static/background_familly.jpg');
+            background-size: cover;
+            background-repeat: no-repeat;
+            margin: 0;
+            font-family: Arial, sans-serif;
         }
 
-            function elegirServicio(nombreServicio) {
-                const confirmacion = confirm(`¿Deseas elegir el servicio: ${nombreServicio}?`);
-                if (confirmacion) {
-                    // Redirigir a la página de contrato con el nombre del servicio como parámetro en la URL
-                    window.location.href = `/cont.html?servicio=${encodeURIComponent(nombreServicio)}`;
-                }
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            border: 1px solid #ccc;
+            border-radius: 10px;
+            padding: 20px;
+            background-color: #f9f9f9;
+            margin-top: 30px;
+        }
+
+        .logo-container {
+            background-color: black;
+            padding: 10px;
+            display: inline-block;
+            border-radius: 5px;
+            margin-bottom: 20px;
+        }
+
+        .logo {
+            max-width: 100px;
+        }
+
+        .invoice-header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .invoice-header h2 {
+            margin-bottom: 10px;
+        }
+
+        .invoice-details {
+            margin-bottom: 20px;
+        }
+
+        .invoice-details p {
+            margin: 5px 0;
+        }
+
+        .invoice-details .serial {
+            font-weight: bold;
+        }
+
+        .qr-code {
+            text-align: center;
+            margin-top: 30px;
+        }
+
+        .black_navbar {
+            background-color: black;
+            color: white;
+            padding: 10px;
+        }
+
+        .black_navbar a {
+            color: white;
+            margin: 0 10px;
+            text-decoration: none;
+        }
+
+        .black_navbar .logo {
+            width: 100px;
+            height: auto;
+            margin-right: 20px;
+        }
+
+        .search-bar {
+            margin-left: auto;
+        }
+
+        .search-bar input {
+            padding: 5px;
+            margin-right: 5px;
+            border-radius: 5px;
+            border: none;
+        }
+
+        .button {
+            padding: 5px 10px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            text-decoration: none;
+        }
+
+        .button:hover {
+            background-color: #0056b3;
+        }
+
+        .payment-methods img {
+            width: 50px;
+            height: auto;
+            margin-right: 10px;
+        }
+
+        @media print {
+            body * {
+                visibility: hidden;
+            }
+            #factura, #factura * {
+                visibility: visible;
+            }
+            #factura {
+                position: absolute;
+                left: 0;
+                top: 0;
+                width: 100%;
+            }
+        }
+    </style>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcode-generator/1.4.4/qrcode.min.js"></script>
+    <script>
+        function generarFactura() {
+            const nombre = document.getElementById('nombre').value;
+            const cedula = document.getElementById('cedula').value;
+            const celular = document.getElementById('celular').value;
+            const urlParams = new URLSearchParams(window.location.search);
+            const plan = urlParams.get('plan_referencia');
+
+            if (nombre === '' || cedula === '' || celular === '') {
+                alert('Por favor, complete todos los campos.');
+                return;
             }
 
-        cargarServicios();
+            const fechaEmision = new Date();
+            const fechaVencimiento = new Date();
+            fechaVencimiento.setDate(fechaEmision.getDate() + 10);
+            const fechaEmisionStr = fechaEmision.toLocaleDateString();
+            const fechaVencimientoStr = fechaVencimiento.toLocaleDateString();
+
+            const serial = 'FA' + Math.floor(Math.random() * 1000000000);
+
+            const facturaDiv = document.getElementById('factura');
+            facturaDiv.innerHTML = `
+                <div class="invoice-header">
+                    <div class="logo-container">
+                        <img src="static/tELCO-logo.png" class="logo" alt="TELCo Logo">
+                    </div>
+                    <h2>Factura de Servicio</h2>
+                    <p>Fecha de emisión: ${fechaEmisionStr}</p>
+                    <p>Vencimiento: ${fechaVencimientoStr}</p>
+                </div>
+                <div class="invoice-details">
+                    <p><strong>Nombre de la empresa:</strong> TELCo</p>
+                    <p><strong>Código de factura:</strong> <span class="serial">${serial}</span></p>
+                    <p><strong>Usuario:</strong> ${nombre}</p>
+                    <p><strong>Cédula:</strong> ${cedula}</p>
+                    <p><strong>Celular:</strong> ${celular}</p>
+                    <p><strong>Producto:</strong> ${plan}</p>
+                    <p><strong>Precio:</strong> ${obtenerPrecio(plan)}</p>
+                </div>
+                <div class="payment-methods">
+                    <h5>Métodos de Pago</h5>
+                    <img src="static/efecty.png" alt="Efecty">
+                    <img src="static/supergiros.png" alt="SuperGIROS">
+                </div>
+                <div class="qr-code" id="qr-code"></div>
+                <button class="btn btn-primary mt-3" onclick="window.print()">Imprimir Factura</button>
+            `;
+
+            // Generar código QR
+            const qr = qrcode(0, 'M');
+            qr.addData(serial);
+            qr.make();
+            document.getElementById('qr-code').innerHTML = qr.createImgTag();
+        }
+
+        function obtenerPrecio(plan) {
+            switch (plan) {
+                case 'Plan basico':
+                    return '$15 mil / mes';
+                case 'Plan Sonic Speed':
+                    return '$30 mil / mes';
+                case 'Plan Sonic Telcommunication':
+                    return '$60 mil / mes';
+                default:
+                    return 'Precio no disponible';
+            }
+        }
     </script>
+</head>
+<body>
+    <div class="black_navbar">
+        <img src="static/tELCO-logo.png" href="home" alt="Logo" class="logo">
+        <a href="home">Home</a>
+        <a href="servicios">Servicios</a>
+        <a href="cobertura">Cobertura</a>
+        <a href="about">Sobre nosotros</a>
+        <div class="search-bar">
+            <input type="text" placeholder="Buscar en Telco">
+            <a class="button btn" role="button">Buscar</a>
+            <a class="button btn" href="login" role="button">Iniciar sesión</a>
+        </div>
+    </div>
+    <h1 class="text-center mt-5 text-white">Contratar Servicio</h1>
+    <form onsubmit="event.preventDefault(); generarFactura();" class="container">
+        <div class="form-group">
+            <label for="nombre">Nombre</label>
+            <input type="text" class="form-control" id="nombre" required>
+        </div>
+        <div class="form-group">
+            <label for="cedula">Cédula</label>
+            <input type="text" class="form-control" id="cedula" required>
+        </div>
+        <div class="form-group">
+            <label for="celular">Celular</label>
+            <input type="text" class="form-control" id="celular" required>
+        </div>
+        <button type="submit" class="btn btn-lg btn-block btn-outline-primary">Generar Factura</button>
+    </form>
+    <div id="factura" class="container mt-5"></div>
 </body>
 </html>
-
