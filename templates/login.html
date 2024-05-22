@@ -22,6 +22,29 @@
             size-adjust: 100%;
             object-fit: cover;
         }
+        
+        .encuesta {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: black;
+        }
+
+        h2 {
+            color: white;
+        }
+
+        form {
+            text-align: center;
+        }
+
+        .btn {
+            color: black;
+            display: inline-block;
+            padding: 10px 20px;
+            text-align: center;
+        }
     </style>
     
 </head>
@@ -39,37 +62,23 @@
         </div>
     </div>
 
-    <div class="encuesta">
-        <h2>Iniciar Sesión</h2>
-        <form>
+    <div style="display: flex; justify-content: center;">
+        <div class="encuesta">
             <div>
-                <label for="usuario">Usuario:</label>
-                <div>
-                    <input type="text" id="input_bar" name="usuario" required>
+            <h2>Iniciar Sesión</h2>
+
+            <form action="/auth/google" method="get">
+                <div class="mt-3">
+                    <button class="btn" type="submit" id="boton-login">
+                        <img src="/static/gmail.png" alt="Gmail" style="width: 100px; height: 70px; vertical-align: middle; margin-right: 8px;">
+                    </button>
                 </div>
+            </form>
             </div>
-            <div>
-                <label for="contraseña">Contraseña:</label>
-                <div>
-                    <input type="password" id="input_bar" name="contraseña" required>
-                </div>
-            </div>
-            <div class="mt-3">
-                <input class ="btn" type="submit" id="boton-login" value="Iniciar sesion">
-            </div>
-            <div>
-                <label for="sso_provider">Seleccione un proveedor de SSO:</label>
-                <select id="sso_provider" name="sso_provider" required>
-                <option value="">Seleccione</option>
-                <option value="gmail">Gmail</option>
-                <option value="facebook">Facebook</option>
-                </select><br><br>
-        <input type="button" value="Iniciar sesión" onclick="redirectToSSO()">
-            </div>
-        </form>
-        <a href="user_register">¿No te has registrado?</a>
-      </div>
-        
+        </div>
+    </div>
+    
+    
 <!-- Agrega la CDN de Bootstrap JS (jQuery y Popper.js son requeridos) -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
