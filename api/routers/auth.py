@@ -79,3 +79,7 @@ def base(request: Request):
 @router.get("/home", response_class=HTMLResponse)
 def home(request: Request):
     return templates.TemplateResponse("home.html", {"request": request})
+
+@router.get("/user_register", response_class=HTMLResponse)
+def user_register(request: Request):
+    return templates.TemplateResponse("user_register.html", {"request": request})

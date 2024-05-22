@@ -1,21 +1,79 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Iniciar sesión</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <title>Iniciar sesion</title>
     <script src="/static/js/redirect.js"></script>
+    <link rel="stylesheet" href="/static/CSS/styles.css">
+    
+    <style>
+        body {
+            background-image: url('static/background_familly.jpg');
+            background-size: cover;
+            background-repeat: no-repeat;
+            margin: 0;
+        }
+        
+        .carousel-item img {
+            width: 100%;
+            size-adjust: 100%;
+            object-fit: cover;
+        }
+    </style>
+    
 </head>
 <body>
-    <h2>Iniciar sesión</h2>
-    <form id="ssoForm">
-        <label for="sso_provider">Seleccione un proveedor de SSO:</label>
-        <select id="sso_provider" name="sso_provider" required>
-            <option value="">Seleccione</option>
-            <option value="gmail">Gmail</option>
-            <option value="facebook">Facebook</option>
-        </select><br><br>
+    <div class="black_navbar">
+        <img src="static/tELCO-logo.png" href="home" alt="Logo" class="logo">
+        <a href="home">Home</a>
+        <a href="servicios">Servicios</a>
+        <a href="cobertura">Cobertura</a>
+        <a href="about">Sobre nosotros</a>
+        <div class="search-bar">
+            <input type="text" placeholder="Buscar en Telco">
+            <button>Busca</button>
+            <a class="button btn" role="button">Buscar</a>
+            <a class="button btn" href="login" role="button">Iniciar sesión</a>
+        </div>
+    </div>
+
+    <div class="encuesta">
+        <h2>Iniciar Sesión</h2>
+        <form>
+            <div>
+                <label for="usuario">Usuario:</label>
+                <div>
+                    <input type="text" id="input_bar" name="usuario" required>
+                </div>
+            </div>
+            <div>
+                <label for="contraseña">Contraseña:</label>
+                <div>
+                    <input type="password" id="input_bar" name="contraseña" required>
+                </div>
+            </div>
+            <div class="mt-3">
+                <input class ="btn" type="submit" id="boton-login" value="Iniciar sesion">
+            </div>
+            <div>
+                <label for="sso_provider">Seleccione un proveedor de SSO:</label>
+                <select id="sso_provider" name="sso_provider" required>
+                <option value="">Seleccione</option>
+                <option value="gmail">Gmail</option>
+                <option value="facebook">Facebook</option>
+                </select><br><br>
         <input type="button" value="Iniciar sesión" onclick="redirectToSSO()">
-    </form>
+            </div>
+        </form>
+        <a href="user_register">¿No te has registrado?</a>
+      </div>
+        
+<!-- Agrega la CDN de Bootstrap JS (jQuery y Popper.js son requeridos) -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<script src="/static/scripts.js"></script>
 </body>
 </html>
