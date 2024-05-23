@@ -118,3 +118,15 @@ def home(request: Request):
 @router.get("/user_register", response_class=HTMLResponse)
 def user_register(request: Request):
     return templates.TemplateResponse("user_register.html", {"request": request})
+
+@router.get("/entretenimiento", response_class=HTMLResponse)
+def entretenimiento(request: Request):
+    return templates.TemplateResponse("entretenimiento.html", {"request": request})
+
+@router.get("/internet", response_class=HTMLResponse)
+def internet(request: Request):
+    return templates.TemplateResponse("internet.html", {"request": request})
+
+@router.get("/familiar", response_class=HTMLResponse)
+def familiar(request: Request):
+    return templates.TemplateResponse("familiar.html", {"request": request})

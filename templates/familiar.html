@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <title>Familiar</title>
+    <link rel="icon" type="image/telco-icon" href="static/telco-icon.png">
+    <link rel="stylesheet" href="/static/CSS/styles.css">
+    
+    <style>
+        body {
+            background-image: url('/static/background_familly.jpg');
+            background-size: cover;
+            background-repeat: no-repeat;
+            margin: 0;
+        }
+
+        .bd-placeholder-img {
+            font-size: 1.125rem;
+            text-anchor: middle;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+        }
+
+        @media (min-width: 768px) {
+            .bd-placeholder-img-lg {
+            font-size: 3.5rem;
+            }
+        }
+
+        #text-card {
+            font-size: 250%;
+            writing-mode: vertical-rl; 
+            margin: 0px;
+        }
+
+    </style>
+    
+</head>
+<body>
+    <div class="black_navbar">
+        <img src="static/tELCO-logo.png" href="home" alt="Logo" class="logo">
+        <a href="home">Home</a>
+        <a href="servicios">Servicios</a>
+        <a href="cobertura">Cobertura</a>
+        <a href="about">Sobre nosotros</a>
+        <div class="search-bar">
+            <input type="text" placeholder="Buscar en Telco">
+            <a class="button btn" role="button">Buscar</a>
+            <a class="button btn" href="login" role="button">Iniciar sesión</a>
+        </div>
+    </div>
+
+    <div class="container-cards">
+        
+        <div class="pricing-header px-3 py-3 pt-md-5 pb-md-4 mx-auto text-center">
+        <h1 class="display-4 text-white">Familiar</h1>
+        <p class="lead text-white">Estas son las opciones para contratar en familia.</p>
+        </div>
+
+        <div class="container">
+        <div class="card-deck mb-3 text-center">
+            <div class="card mb-4 shadow-sm">
+            <div class="card-header">
+                <h4 class="my-0 font-weight-normal">basico</h4>
+            </div>
+            <div class="card-body">
+                <h1 class="card-title pricing-card-title">$50<small class="text-muted"> mil / mes</small></h1>
+                <ul class="list-unstyled mt-3 mb-4">
+                <li>100 gigas</li>
+                <li>Telefonia Fija</li>
+                <li>2 mes de la plataforma de streaming a eleccion</li>
+                </ul>
+                <a href="/contratar?plan_referencia=Plan%20basico%20Familia"  type="button" class="btn btn-lg btn-block btn-outline-primary">Contrata</a>
+            </div>
+            </div>
+            <div class="card mb-4 shadow-sm">
+            <div class="card-header">
+                <h4 class="my-0 font-weight-normal">Sonic Speed</h4>
+            </div>
+            <div class="card-body">
+                <h1 class="card-title pricing-card-title">$30<small class="text-muted"> mil / mes</small></h1>
+                <ul class="list-unstyled mt-3 mb-4">
+                    <li>200 gigas</li>
+                    <li>Telefonia Fija</li>
+                    <li>4 meses de la plataforma de streaming a eleccion</li>
+                </ul>
+                <a href="/contratar?plan_referencia=Plan%20Sonic%20Speed%20Familia" type="button" class="btn btn-lg btn-block btn-outline-primary">Contrata</a>
+            </div>
+            </div>
+        </div>
+    </div>
+        
+    </div>
+    
+<!-- Agrega la CDN de Bootstrap JS (jQuery y Popper.js son requeridos) -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<script src="/static/scripts.js"></script>
+</body>
+</html>
