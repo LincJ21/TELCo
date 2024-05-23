@@ -1,11 +1,12 @@
 import os
+
 from fastapi import FastAPI
 from fastapi.staticfiles import StaticFiles
 from fastapi.templating import Jinja2Templates
+from fastapi.security.oauth2 import OAuth2AuthorizationCodeBearer
+
 from api.routers import auth, google_sso, factura
 from sso.google_sso import GoogleSSO
-from fastapi.security.oauth2 import OAuth2AuthorizationCodeBearer  # Importa la clase OAuth2AuthorizationCodeBearer
-
 
 app = FastAPI()
 templates = Jinja2Templates(directory="templates")

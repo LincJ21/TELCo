@@ -21,7 +21,7 @@ try:
     # Crear un cursor
     cursor = connection.cursor()
 
-    # Modificar la definición de la tabla factura
+    # Modificar la definición de la tabla 
     query = """
     ALTER TABLE factura
     ALTER COLUMN precio TYPE NUMERIC(10, 2);

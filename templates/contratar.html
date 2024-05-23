@@ -188,10 +188,11 @@
                 <label for="celular">Celular</label>
                 <input type="text" class="form-control" id="celular" required>
             </div>
-            <button href="/guardar_factura" type="submit" class="btn btn-lg btn-block btn-outline-primary">Generar Factura</button>
+            <input type="hidden" id="plan_referencia" name="plan_referencia" value="">
+            <button type="submit" class="btn btn-lg btn-block btn-outline-primary">Generar Factura</button>
         </form>
     </div>
-    
+    <div id="factura" class="container mt-5"></div>
 </body>
 
 </html>
